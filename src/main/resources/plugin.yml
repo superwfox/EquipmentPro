@@ -2,3 +2,8 @@ name: EquipmentPro
 version: '1.0'
 main: sudark2.Sudark.equipmentPro.EquipmentPro
 api-version: '1.21'
+commands:
+  EquipmentPro:
+    description: "EquipmentPro"
+    usage: "/<command>"
+    aliases: [ ep ]
