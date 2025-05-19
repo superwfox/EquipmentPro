@@ -8,16 +8,17 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import java.util.List;
-
 import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
 
-public class Equipment implements Listener {
+public class checkEquipment implements Listener {
 
-    static String[] styles = {"obsidian"};
+    static String[] styles = {
+            "obsidian"
+    };
 
     @EventHandler
-    public void onPlayerJoin(PlayerArmorChangeEvent e) {
+    public void onPlayerDress(PlayerArmorChangeEvent e) {
+        e.getPlayer().removeMetadata("EP",get());
         Armor(e.getPlayer());
     }
 
@@ -32,14 +33,15 @@ public class Equipment implements Listener {
         for (String style : styles) {
 
             pl.removeMetadata(style, get());
-            boolean h = false, c = false, l = false, b = false;
+            int h = 0, c = 0, l = 0, b = 0;
 
-            if (helmet != null && check(helmet, style)) h = true;
-            if (chestplate != null && check(chestplate, style)) c = true;
-            if (leggings != null && check(leggings, style)) l = true;
-            if (boots != null && check(boots, style)) b = true;
+            if (helmet != null && check(helmet, style)) h = 1;
+            if (chestplate != null && check(chestplate, style)) c = 1;
+            if (leggings != null && check(leggings, style)) l = 1;
+            if (boots != null && check(boots, style)) b = 1;
 
-            if (h || c || l || b) pl.setMetadata(style, new FixedMetadataValue(get(), List.of(h, c, l, b)));
+            if (h + c + l + b > 0)
+                pl.setMetadata(style, new FixedMetadataValue(get(), h + "," + c + "," + l + "," + b));
         }
 
     }
