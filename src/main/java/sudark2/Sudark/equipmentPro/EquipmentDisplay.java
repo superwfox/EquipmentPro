@@ -23,7 +23,10 @@ public class EquipmentDisplay {
             "warden",
             "angel",
             "god",
-            "catBlack"
+            "catBlack",
+            "crown",
+            "hugeCrown",
+            "hugeCrown2",
     };
 
     //龙头
@@ -165,13 +168,70 @@ public class EquipmentDisplay {
 
     //猫耳（黑/粉）
     static Effect[] catBlack = {
-            // 原始部分
-            new Effect(Material.BLACK_TERRACOTTA, cloneWithScaleP(cloneWithLocP(2, 2, 0), 2, 1, 2)),
-            new Effect(Material.BLACK_TERRACOTTA, cloneWithScaleP(cloneWithLocP(3, 4, -1), 1, 1, 2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 4, 1), 2, 1, 2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 3, 0), 1, 1, 2)),
 
-            // 对称部分（YOZ镜像）
-            new Effect(Material.BLACK_TERRACOTTA, cloneWithScaleP(cloneWithLocP(-3, 2, 0), 2, 1, 2)),
-            new Effect(Material.BLACK_TERRACOTTA, cloneWithScaleP(cloneWithLocP(-3, 4, -1), 1, 1, 2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 4, 1), 2, 1, 2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 3, 0), 1, 1, 2)),
+    };
+
+    static Effect[] crown = {
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-1, 4, -2), 2, 1, 4)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 4, -1), 4, 1, 2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithLocP(0, 5, -2)),
+            new Effect(Material.GOLD_BLOCK, cloneWithLocP(-2, 5, -1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithLocP(1, 5, 0)),
+            new Effect(Material.GOLD_BLOCK, cloneWithLocP(-1, 5, 1)),
+
+    };
+
+    static Effect[] hugeCrown = {
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 4, -2), 4, 1, 4)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 5, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 5, -3), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 5, -3), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 5, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 5, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 5, 2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 5, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 5, 2), 1, 2, 1)),
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 7, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 2, 1)),
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-1, 7, -1), 2, 2, 2)),
+
+    };
+
+    static Effect[] hugeCrown2 = {
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 4, -2), 4, 1, 4)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 5, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 5, -3), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 5, -3), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 5, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 5, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 5, 2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 5, 1), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 5, 2), 1, 2, 1)),
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 6, 2), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(2, 6, -3), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 6, 2), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-3, 6, -3), 1, 1, 1)),
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, 1), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 7, 1), 1, 1, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 1, 1)),
+
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-1, 7, -1), 2, 1, 2)),
+
+            new Effect(Material.HONEY_BLOCK, cloneWithScaleP(cloneWithLocP(-1, 5, -1), 2, 2, 2)),
     };
 
 

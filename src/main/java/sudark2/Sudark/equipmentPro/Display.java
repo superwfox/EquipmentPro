@@ -90,6 +90,21 @@ public class Display implements Listener {
                 switch (turn) {
                     case 1 -> show(pl, catBlack, true);
                 }
+                break;
+            case "crown":
+                switch (turn) {
+                    case 1 -> show(pl, crown, true);
+                }
+                break;
+            case "hugeCrown":
+                switch (turn) {
+                    case 1 -> show(pl, hugeCrown, true);
+                }
+                break;
+            case "hugeCrown2":
+                switch (turn) {
+                    case 1 -> show(pl, hugeCrown2, true);
+                }
 
         }
     }
