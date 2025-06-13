@@ -8,13 +8,10 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import static sudark2.Sudark.equipmentPro.EquipmentDisplay.styles;
 import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
 
 public class checkEquipment implements Listener {
-
-    static String[] styles = {
-            "obsidian"
-    };
 
     @EventHandler
     public void onPlayerDress(PlayerArmorChangeEvent e) {

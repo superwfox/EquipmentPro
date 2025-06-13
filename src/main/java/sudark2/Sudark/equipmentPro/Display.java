@@ -21,7 +21,7 @@ public class Display implements Listener {
     public void onPlayerMove(PlayerMoveEvent e) {
         Player pl = e.getPlayer();
 
-        for (String style : checkEquipment.styles) {
+        for (String style : styles) {
 
             if (!pl.hasMetadata(style)) continue;
 
@@ -61,6 +61,36 @@ public class Display implements Listener {
                     case 4 -> show(pl, wildB, false);
                 }
                 break;
+            case "wildG":
+                switch (turn) {
+                    case 1 -> show(pl, wildGH, true);
+                }
+                break;
+            case "tinyAntler":
+                switch (turn) {
+                    case 1 -> show(pl, tinyAntler, true);
+                }
+                break;
+            case "warden":
+                switch (turn) {
+                    case 1 -> show(pl, warden, true);
+                }
+                break;
+            case "angel":
+                switch (turn) {
+                    case 1 -> show(pl, angel, true);
+                }
+                break;
+            case "god":
+                switch (turn) {
+                    case 1 -> show(pl, god, true);
+                }
+                break;
+            case "catBlack":
+                switch (turn) {
+                    case 1 -> show(pl, catBlack, true);
+                }
+
         }
     }
 
@@ -106,7 +136,7 @@ public class Display implements Listener {
         bl.setTransformation(effect.getTransformation());
 
         bl.setTeleportDuration(0);
-        bl.setInterpolationDuration(1);
+        bl.setInterpolationDuration(3);
 
         bls.add(bl);
 
