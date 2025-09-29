@@ -15,6 +15,7 @@ public final class EquipmentPro extends JavaPlugin {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new DisplayListener(), this);
+        Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
 
         Bukkit.getPluginCommand("EquipmentPro").setExecutor(new CommandHander());
 

@@ -14,7 +14,9 @@ import java.util.*;
 
 import static sudark2.Sudark.equipmentPro.EquipmentDisplay.*;
 import static sudark2.Sudark.equipmentPro.EquipmentPro.bls;
+import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
 import static sudark2.Sudark.equipmentPro.FileManager.getQQ;
+import static sudark2.Sudark.equipmentPro.FileManager.hairMap;
 
 public class DisplayListener implements Listener {
 
@@ -25,33 +27,35 @@ public class DisplayListener implements Listener {
         Player pl = e.getPlayer();
         String qq = getQQ(pl);
         if (PlayerHats.containsKey(qq)) {
-            PlayerHats.get(pl).forEach(BlockDisplay::remove);
+            PlayerHats.get(qq).forEach(BlockDisplay::remove);
         }
     }
 
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e){
+    public void onPlayerMove(PlayerMoveEvent e) {
         Player pl = e.getPlayer();
-        if (PlayerHats.containsKey(pl)) {
-            PlayerHats.get(pl).forEach(bd -> {
+        String qq = getQQ(pl);
+        if (PlayerHats.containsKey(qq)) {
+            PlayerHats.get(qq).forEach(bd -> {
                 bd.teleport(pl.getEyeLocation().subtract(0, 2 * p, 0).clone());
             });
         }
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
+    public void onPlayerJoin(PlayerJoinEvent e) throws NoSuchFieldException, IllegalAccessException {
         Player pl = e.getPlayer();
         String qq = getQQ(pl);
 
-        if(qq == null)return;
+        if (qq == null) return;
 
-
-
-
+        if (PlayerHats.containsKey(qq)) {
+            Set<BlockDisplay> bds = spawn(pl.getEyeLocation().subtract(0, 2 * p, 0).clone(), getEffect(hairMap.get(qq)), pl);
+            PlayerHats.put(qq, bds);
+        }
     }
 
-    public static Set<BlockDisplay> spawn(Location loc, Effect[] e) {
+    public static Set<BlockDisplay> spawn(Location loc, Effect[] e, Player owner) {
         Set<BlockDisplay> spawned = new HashSet<>();
         for (Effect effect : e) {
             BlockDisplay bl = (BlockDisplay) loc.getWorld().spawnEntity(loc, EntityType.BLOCK_DISPLAY);
@@ -60,11 +64,13 @@ public class DisplayListener implements Listener {
             bl.setTransformation(effect.getTransformation());
 
             bl.setTeleportDuration(0);
-            bl.setInterpolationDuration(0);
+            bl.setInterpolationDuration(1);
+            if (owner != null) owner.hideEntity(get(), bl);
 
             bls.add(bl);
             spawned.add(bl);
         }
+        if (owner != null) owner.sendMessage("[§e头饰§f] 默认情况 你无法看见头饰");
         return spawned;
     }
 }
