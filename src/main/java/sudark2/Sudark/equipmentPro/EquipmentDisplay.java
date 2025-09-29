@@ -15,10 +15,15 @@ public class EquipmentDisplay {
             new Quaternionf()                // 旋转中心点（leftRotation），默认不旋转
     );
 
+    public static Effect[] getEffect(String style) throws NoSuchFieldException, IllegalAccessException {
+        return (Effect[]) EquipmentDisplay.class.getDeclaredField(style).get(null);
+    }
+
     static String[] styles = {
             "obsidian",
             "wild",
             "wildG",
+            "wildO",
             "tinyAntler",
             "warden",
             "angel",
@@ -30,35 +35,24 @@ public class EquipmentDisplay {
     };
 
     //龙头
-    static Effect[] obsidianH = {
+    static Effect[] obsidian = {
 
             new Effect(Material.OBSIDIAN, cloneWithLocP(1, 4, 0)),
             new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(1, 5, 0), 1, 2, 1)),
             new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(2, 6, -1), 1, 3, 1)),
             new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(2, 9, -2), 2, 1, 1)),
-            new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(1, 8, 1), 1, 1, 1)),
+            new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(1, 8, -1), 1, 1, 1)),
 
             new Effect(Material.OBSIDIAN, cloneWithLocP(-2, 4, 0)),
             new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(-2, 5, 0), 1, 2, 1)),
             new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(-3, 6, -1), 1, 3, 1)),
             new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(-4, 9, -2), 2, 1, 1)),
-            new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(-2, 8, 1), 1, 1, 1)),
-
-    };
-
-    static Effect[] obsidianC = {
-
-    };
-
-    static Effect[] obsidianL = {
-
-    };
-    static Effect[] obsidianB = {
+            new Effect(Material.CRYING_OBSIDIAN, cloneWithScaleP(cloneWithLocP(-2, 8, -1), 1, 1, 1)),
 
     };
 
     //鹿角
-    static Effect[] wildH = {
+    static Effect[] wild = {
             new Effect(Material.BROWN_TERRACOTTA, cloneWithScaleP(cloneWithLocP(1, 4, 0), 1, 2, 1)),
             new Effect(Material.BROWN_TERRACOTTA, cloneWithScaleP(cloneWithLocP(2, 5, -1), 2, 2, 1)),
             new Effect(Material.BROWN_TERRACOTTA, cloneWithScaleP(cloneWithLocP(4, 6, 0), 1, 2, 1)),
@@ -74,18 +68,8 @@ public class EquipmentDisplay {
             new Effect(Material.BROWN_TERRACOTTA, cloneWithLocP(-4, 9, 1)),
     };
 
-    static Effect[] wildC = {
-
-    };
-    static Effect[] wildL = {
-
-    };
-    static Effect[] wildB = {
-
-    };
-
     //金鹿角
-    static Effect[] wildGH = {
+    static Effect[] wildG = {
             new Effect(Material.YELLOW_CONCRETE_POWDER, cloneWithScaleP(cloneWithLocP(1, 4, 0), 1, 2, 1)),
             new Effect(Material.YELLOW_CONCRETE_POWDER, cloneWithScaleP(cloneWithLocP(2, 5, -1), 2, 2, 1)),
             new Effect(Material.YELLOW_CONCRETE_POWDER, cloneWithScaleP(cloneWithLocP(4, 6, 0), 1, 2, 1)),
@@ -101,6 +85,22 @@ public class EquipmentDisplay {
             new Effect(Material.YELLOW_CONCRETE_POWDER, cloneWithLocP(-4, 9, 1)),
     };
 
+    //黑鹿角
+    static Effect[] wildO = {
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(1, 4, 0), 1, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(2, 5, -1), 2, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(4, 6, 0), 1, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(2, 7, 0), 1, 3, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithLocP(1, 8, 0)),
+            new Effect(Material.OBSIDIAN, cloneWithLocP(3, 9, 1)),
+
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(-2, 4, 0), 1, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(-4, 5, -1), 2, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(-5, 6, 0), 1, 2, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithScaleP(cloneWithLocP(-3, 7, 0), 1, 3, 1)),
+            new Effect(Material.OBSIDIAN, cloneWithLocP(-2, 8, 0)),
+            new Effect(Material.OBSIDIAN, cloneWithLocP(-4, 9, 1)),
+    };
 
     //小鹿角
     static Effect[] tinyAntler = {
@@ -201,7 +201,7 @@ public class EquipmentDisplay {
             new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, 1), 1, 2, 1)),
             new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 2, 1)),
             new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 7, 1), 1, 2, 1)),
-            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(1, 7, -2), 1, 2, 1)),
+            new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-2, 7, -2), 1, 2, 1)),
 
             new Effect(Material.GOLD_BLOCK, cloneWithScaleP(cloneWithLocP(-1, 7, -1), 2, 2, 2)),
 

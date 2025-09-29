@@ -14,15 +14,15 @@ public final class EquipmentPro extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        Bukkit.getPluginManager().registerEvents(new checkEquipment(), this);
-        Bukkit.getPluginManager().registerEvents(new Display(), this);
+        Bukkit.getPluginManager().registerEvents(new DisplayListener(), this);
 
         Bukkit.getPluginCommand("EquipmentPro").setExecutor(new CommandHander());
 
+        FileManager.checkFile();
+        FileManager.load();
     }
 
-    public static Plugin get(){
+    public static Plugin get() {
         return Bukkit.getPluginManager().getPlugin("EquipmentPro");
     }
 
