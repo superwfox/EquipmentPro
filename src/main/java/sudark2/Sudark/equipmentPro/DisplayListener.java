@@ -63,8 +63,8 @@ public class DisplayListener implements Listener {
             bl.setBlock(effect.getMaterial().createBlockData());
             bl.setTransformation(effect.getTransformation());
 
-            bl.setTeleportDuration(0);
-            bl.setInterpolationDuration(1);
+            bl.setTeleportDuration(1);
+            bl.setInterpolationDuration(0);
             if (owner != null) owner.hideEntity(get(), bl);
 
             bls.add(bl);
