@@ -244,7 +244,7 @@ public class EquipmentDisplay {
     static Material black = Material.BLACK_WOOL;
     static Material brown = Material.BLACK_TERRACOTTA;
     static Material white = Material.SMOOTH_QUARTZ;
-    static Material eyeBlack = Material.GOLD_BLOCK;
+    static Material goldBlock = Material.GOLD_BLOCK;
     static Material lightBrown = Material.YELLOW_GLAZED_TERRACOTTA;
     static Effect[] Dragon = {
             //chin
@@ -273,7 +273,7 @@ public class EquipmentDisplay {
             new Effect(black, HalfP(LocHP(cx - 1, cy + 1, cz + 3), 2, 1, 1)),
 
             //nose
-            new Effect(brown, HalfP(LocHP(cx - 1, cy + 2, cz + 4), 2, 3, 2)),
+            new Effect(brown, HalfP(LocHP(cx - 1, cy + 2, cz + 4), 2.1f, 3, 2)),
             new Effect(black, HalfP(LocHP(cx - 2, cy + 2, cz + 5), 4, 1, 1)),
             //pair left
             new Effect(brown, HalfP(LocHP(cx - 3, cy + 2, cz + 4), 1, 1, 2)),
@@ -311,7 +311,7 @@ public class EquipmentDisplay {
             new Effect(brown, HalfP(LocHP(cx - 1, cy + 6, cz + 3), 2, 3, 2)),
 
             //eyes
-            new Effect(eyeBlack, HalfP(LocHP(cx - 2.1f, cy + 6, cz + 3), 4.2f, 1, 1.1f)),
+            new Effect(goldBlock, HalfP(LocHP(cx - 2.1f, cy + 6, cz + 3), 4.2f, 1, 1.1f)),
             new Effect(white, HalfP(LocHP(cx - 3, cy + 6, cz + 3), 6, 1, 1)),
 
             //eyebrow
@@ -356,6 +356,157 @@ public class EquipmentDisplay {
             new Effect(brown, HalfP(LocHP(cx + 3, cy + 15, cz), 1, 1, 1)),
     };
 
+    static float c1x = 0, c1y = 0, c1z = 0;
+    static Material whiteHair = Material.WHITE_WOOL;
+    static Material mouth = Material.GRAY_CONCRETE;
+    static Material yellow = Material.YELLOW_WOOL;
+    static Effect[] Tiger = {
+            //chin
+            new Effect(whiteHair, HalfP(LocHP(c1x - 3, c1y - 2, c1z + 2), 6, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 2, c1y - 2, c1z + 3), 4, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y - 1, c1z + 2), 8, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 3, c1y - 1, c1z + 3), 6, 1, 2)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 1, c1y - 1, c1z + 5), 2, 1, 1)),
+
+            //mouth
+            new Effect(mouth, HalfP(LocHP(c1x - 2, c1y - 1, c1z + 5), 1, 1, 1)),
+            new Effect(mouth, HalfP(LocHP(c1x + 1, c1y - 1, c1z + 5), 1, 1, 1)),
+            new Effect(mouth, HalfP(LocHP(c1x - 1, c1y, c1z + 5), 2, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 1, c1y + 1, c1z + 5), 2, 1, 1)),
+
+            //nose
+            new Effect(whiteHair, HalfP(LocHP(c1x - 2, c1y, c1z + 5), 4, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 1, c1y, c1z + 5), 4, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 1, c1y + 2, c1z + 6), 2, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 3, c1y + 2, c1z + 5), 4, 1, 1)),
+
+            //cheek(under)
+            new Effect(whiteHair, HalfP(LocHP(c1x - 3, c1y + 1, c1z + 4), 6, 4, 1)),
+            //pair left
+            new Effect(black, HalfP(LocHP(c1x - 3, c1y, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 5, c1y + 1, c1z + 3), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y, c1z + 3), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 5, c1y, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 1, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 2, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 1, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 8, c1y + 2, c1z + 2), 1, 4, 1)),
+            //cheek right
+            new Effect(black, HalfP(LocHP(c1x + 2, c1y, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 1, c1z + 3), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y, c1z + 3), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 4, c1y, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 1, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 2, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 5, c1y, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 6, c1y + 1, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 7, c1y + 2, c1z + 2), 1, 4, 1)),
+
+            //cheek(up)
+            //pair left
+            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 2, c1z + 3), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y + 2, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y + 3, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 5, c1y + 3, c1z + 3), 2, 2, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 3, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 3, c1z + 3), 1, 2, 1)),
+            //pair right
+            new Effect(black, HalfP(LocHP(c1x + 3, c1y + 2, c1z + 3), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 5, c1y + 2, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 3), 2, 2, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 3, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 6, c1y + 3, c1z + 3), 1, 2, 1)),
+
+            //eyebrow
+            //pair left
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y + 5, c1z + 3), 1, 1, 1)),
+            new Effect(yellow, HalfP(LocHP(c1x - 4, c1y + 6, c1z + 3), 1, 1, 1)),
+            new Effect(yellow, HalfP(LocHP(c1x - 3, c1y + 6, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 2, c1y + 7, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 5, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y + 5, c1z + 3), 1, 2, 1)),
+            //pair right
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 5, c1z + 3), 1, 1, 1)),
+            new Effect(yellow, HalfP(LocHP(c1x + 3, c1y + 6, c1z + 3), 1, 1, 1)),
+            new Effect(yellow, HalfP(LocHP(c1x + 2, c1y + 6, c1z + 4), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 1, c1y + 7, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 5, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 5, c1y + 5, c1z + 3), 1, 2, 1)),
+
+            //eye
+            new Effect(goldBlock, HalfP(LocHP(c1x - 3, c1y + 5, c1z + 4), 6, 1, 1)),
+
+            //eyeMiddle
+            new Effect(whiteHair, HalfP(LocHP(c1x - 1, c1y + 4, c1z + 5), 2, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 1, c1y + 4, c1z + 6), 2, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 2, c1y + 5, c1z + 5), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 1, c1y + 5, c1z + 5), 1, 2, 1)),
+
+            //head
+            //fore
+            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 9, c1z + 2), 12, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 1, c1y + 7, c1z + 3), 2, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 1, c1y + 10, c1z + 2), 2, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 8, c1z + 3), 2, 2, 1)),
+            //pair left
+            new Effect(black, HalfP(LocHP(c1x - 4, c1y + 7, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 5, c1y + 7, c1z + 3), 1, 2, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 3, c1y + 7, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 2, c1y + 8, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 2, c1y + 9, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 3, c1y + 8, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y + 9, c1z + 3), 2, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 4, c1y + 10, c1z + 2), 3, 1, 1)),
+            //pair right
+            new Effect(black, HalfP(LocHP(c1x + 3, c1y + 7, c1z + 3), 1, 2, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 4, c1y + 7, c1z + 3), 1, 2, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 2, c1y + 7, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 8, c1z + 4), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 9, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 2, c1y + 8, c1z + 3), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 2, c1y + 9, c1z + 3), 2, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 10, c1z + 2), 3, 1, 1)),
+            //left
+            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 5, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 8, c1y + 6, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 7, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 8, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 6, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y + 7, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 8, c1z + 2), 1, 2, 1)),
+            //right
+            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 5, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 7, c1y + 6, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 7, c1z + 2), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 8, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 6, c1y + 6, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 5, c1y + 7, c1z + 2), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 6, c1y + 8, c1z + 2), 1, 2, 1)),
+
+            //ears
+            //pair left
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y + 10, c1z), 3, 1, 2)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 11, c1z), 5, 1, 2)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 6, c1y + 13, c1z), 2, 1, 2)),
+            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 11, c1z + 1), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 12, c1z + 1), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 12, c1z + 1), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 4, c1y + 12, c1z + 1), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x - 7, c1y + 12, c1z ), 4, 1, 1)),
+            //pair right
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 10, c1z), 3, 1, 2)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 2, c1y + 11, c1z), 5, 1, 2)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 4, c1y + 13, c1z), 2, 1, 2)),
+            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 11, c1z + 1), 1, 1, 1)),
+            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 12, c1z + 1), 2, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 6, c1y + 12, c1z + 1), 1, 1, 1)),
+            new Effect(whiteHair, HalfP(LocHP(c1x + 3, c1y + 12, c1z ), 4, 1, 1))
+
+    };
 
     public static Transformation cloneWithScale(Transformation transformation, float sx, float sy, float sz) {
         return new Transformation(
