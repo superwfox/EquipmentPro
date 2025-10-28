@@ -1,6 +1,7 @@
 package sudark2.Sudark.equipmentPro;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,8 @@ public final class EquipmentPro extends JavaPlugin {
 
         FileManager.checkFile();
         FileManager.load();
+
+
     }
 
     public static Plugin get() {

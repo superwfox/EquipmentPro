@@ -14,7 +14,7 @@ public class EquipmentDisplay {
             new Vector3f(p, p, p), // 缩放（scale）到 1/8
             new Quaternionf()                // 旋转中心点（leftRotation），默认不旋转
     );
-    static float hp = 0.0625f;
+    static float hp = 0.075f;
     static Transformation half = new Transformation(
             new Vector3f(0, 0, 0),            // 平移（translation）向量
             new Quaternionf(),               // 旋转（rotation），默认不旋转
@@ -238,278 +238,600 @@ public class EquipmentDisplay {
             new Effect(Material.IRON_BLOCK, ScaleP(LocP(-3, 4, -3), 1, 1, 1))
     };
 
-    static float cx = 0f;
-    static float cy = 0f;
-    static float cz = 5 * p;
-    static Material black = Material.BLACK_WOOL;
-    static Material brown = Material.BLACK_TERRACOTTA;
-    static Material white = Material.SMOOTH_QUARTZ;
-    static Material goldBlock = Material.GOLD_BLOCK;
-    static Material lightBrown = Material.YELLOW_GLAZED_TERRACOTTA;
-    static Effect[] Dragon = {
-            //chin
-            new Effect(brown, HalfP(LocHP(cx - 2, cy - 1, cz + 4), 4, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 1, cy - 2, cz + 4), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 2, cy - 2, cz + 3), 4, 1, 1)),
-            //pair left
-            new Effect(brown, HalfP(LocHP(cx - 3, cy - 1, cz + 3), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 5, cy, cz + 2), 2, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 4, cy - 1, cz + 2), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 1, cz + 3), 1, 1, 1)),
-            //pair right
-            new Effect(brown, HalfP(LocHP(cx + 2, cy - 1, cz + 3), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy, cz + 2), 2, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy - 1, cz + 2), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 1, cz + 3), 1, 1, 1)),
+    static Effect[] Dragon;
+    static Effect[] Tiger;
 
-            //teeth
-            new Effect(white, HalfP(LocHP(cx + 1.9f, cy, cz + 5), 1.2f, 1.2f, 1.2f)),
-            new Effect(white, HalfP(LocHP(cx - 3.1f, cy, cz + 5), 1.2f, 1.2f, 1.2f)),
-            new Effect(white, HalfP(LocHP(cx - 4.1f, cy + 2, cz + 3), 8.2f, 1.2f, 1.2f)),
+    static {
+        float cx = 0f;
+        float cy = 0f;
+        float cz = 2;
+        Material black = Material.BLACK_WOOL;
+        Material brown = Material.BLACK_TERRACOTTA;
+        Material white = Material.SMOOTH_QUARTZ;
+        Material goldBlock = Material.GOLD_BLOCK;
+        Material lightBrown = Material.YELLOW_GLAZED_TERRACOTTA;
+        Dragon = new Effect[]{
+                //chin
+                new Effect(brown, HalfP(LocHP(cx - 2, cy - 1, cz + 4), 4, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 1, cy - 2, cz + 4), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 2, cy - 2, cz + 3), 4, 1, 1)),
+                //pair left
+                new Effect(brown, HalfP(LocHP(cx - 3, cy - 1, cz + 3), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 5, cy, cz + 2), 2, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 4, cy - 1, cz + 2), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 1, cz + 3), 1, 1, 1)),
+                //pair right
+                new Effect(brown, HalfP(LocHP(cx + 2, cy - 1, cz + 3), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy, cz + 2), 2, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy - 1, cz + 2), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 1, cz + 3), 1, 1, 1)),
 
-            //mouth
-            new Effect(brown, HalfP(LocHP(cx - 3, cy + 1, cz + 4), 2, 1, 2)),
-            new Effect(brown, HalfP(LocHP(cx + 1, cy + 1, cz + 4), 2, 1, 2)),
-            new Effect(black, HalfP(LocHP(cx - 1, cy + 1, cz + 3), 2, 1, 1)),
+                //teeth
+                new Effect(white, HalfP(LocHP(cx + 1.9f, cy, cz + 5), 1.2f, 1.2f, 1.2f)),
+                new Effect(white, HalfP(LocHP(cx - 3.1f, cy, cz + 5), 1.2f, 1.2f, 1.2f)),
+                new Effect(white, HalfP(LocHP(cx - 4.1f, cy + 2, cz + 3), 8.2f, 1.2f, 1.2f)),
 
-            //nose
-            new Effect(brown, HalfP(LocHP(cx - 1, cy + 2, cz + 4), 2, 3, 2.1f)),
-            new Effect(black, HalfP(LocHP(cx - 2, cy + 2, cz + 5), 4, 1, 1)),
-            //pair left
-            new Effect(brown, HalfP(LocHP(cx - 3, cy + 2, cz + 4), 1, 1, 2)),
-            new Effect(brown, HalfP(LocHP(cx - 2, cy + 4, cz + 4), 1, 1, 2)),
-            //pair right
-            new Effect(brown, HalfP(LocHP(cx + 2, cy + 2, cz + 4), 1, 1, 2)),
-            new Effect(brown, HalfP(LocHP(cx + 1, cy + 4, cz + 4), 1, 1, 2)),
+                //mouth
+                new Effect(brown, HalfP(LocHP(cx - 3, cy + 1, cz + 4), 2, 1, 2)),
+                new Effect(brown, HalfP(LocHP(cx + 1, cy + 1, cz + 4), 2, 1, 2)),
+                new Effect(black, HalfP(LocHP(cx - 1, cy + 1, cz + 3), 2, 1, 1)),
 
-            //cheek left
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 3, cz + 4), 3, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 5, cy + 5, cz + 2), 2, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 6, cy + 2, cz + 2), 2, 3, 1)),
-            new Effect(lightBrown, HalfP(LocHP(cx - 6.1f, cy + 3, cz + 2), 1.2f, 1.2f, 1.2f)),
-            new Effect(lightBrown, HalfP(LocHP(cx - 5.1f, cy + 4, cz + 3), 1.2f, 1.2f, 1.2f)),
-            new Effect(brown, HalfP(LocHP(cx - 5f, cy + 2, cz + 3), 1, 2, 1)),
+                //nose
+                new Effect(brown, HalfP(LocHP(cx - 1, cy + 2, cz + 4), 2, 3, 2.1f)),
+                new Effect(black, HalfP(LocHP(cx - 2, cy + 2, cz + 5), 4, 1, 1)),
+                //pair left
+                new Effect(brown, HalfP(LocHP(cx - 3, cy + 2, cz + 4), 1, 1, 2)),
+                new Effect(brown, HalfP(LocHP(cx - 2, cy + 4, cz + 4), 1, 1, 2)),
+                //pair right
+                new Effect(brown, HalfP(LocHP(cx + 2, cy + 2, cz + 4), 1, 1, 2)),
+                new Effect(brown, HalfP(LocHP(cx + 1, cy + 4, cz + 4), 1, 1, 2)),
 
-            new Effect(brown, HalfP(LocHP(cx - 6, cy, cz + 1), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 8, cy + 1, cz + 1), 3, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 7, cy + 2, cz + 1), 2, 1, 1)),
+                //cheek left
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 3, cz + 4), 3, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 5, cy + 5, cz + 2), 2, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 6, cy + 2, cz + 2), 2, 3, 1)),
+                new Effect(lightBrown, HalfP(LocHP(cx - 6.1f, cy + 3, cz + 2), 1.2f, 1.2f, 1.2f)),
+                new Effect(lightBrown, HalfP(LocHP(cx - 5.1f, cy + 4, cz + 3), 1.2f, 1.2f, 1.2f)),
+                new Effect(brown, HalfP(LocHP(cx - 5f, cy + 2, cz + 3), 1, 2, 1)),
 
-            //cheek right
-            new Effect(brown, HalfP(LocHP(cx + 1, cy + 3, cz + 4), 3, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 5, cz + 2), 2, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 4, cy + 2, cz + 2), 2, 3, 1)),
-            new Effect(lightBrown, HalfP(LocHP(cx + 4.9f, cy + 3, cz + 2), 1.2f, 1.2f, 1.2f)),
-            new Effect(lightBrown, HalfP(LocHP(cx + 3.9f, cy + 4, cz + 3), 1.2f, 1.2f, 1.2f)),
-            new Effect(brown, HalfP(LocHP(cx + 4f, cy + 2, cz + 3), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 6, cy, cz + 1), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 8, cy + 1, cz + 1), 3, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 7, cy + 2, cz + 1), 2, 1, 1)),
 
-            new Effect(brown, HalfP(LocHP(cx + 5, cy, cz + 1), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 5, cy + 1, cz + 1), 3, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 5, cy + 2, cz + 1), 2, 1, 1)),
+                //cheek right
+                new Effect(brown, HalfP(LocHP(cx + 1, cy + 3, cz + 4), 3, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 5, cz + 2), 2, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 4, cy + 2, cz + 2), 2, 3, 1)),
+                new Effect(lightBrown, HalfP(LocHP(cx + 4.9f, cy + 3, cz + 2), 1.2f, 1.2f, 1.2f)),
+                new Effect(lightBrown, HalfP(LocHP(cx + 3.9f, cy + 4, cz + 3), 1.2f, 1.2f, 1.2f)),
+                new Effect(brown, HalfP(LocHP(cx + 4f, cy + 2, cz + 3), 1, 2, 1)),
 
-            //noseBridge
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 4, cz + 3), 8, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 1, cy + 6, cz + 3), 2, 3, 2)),
+                new Effect(brown, HalfP(LocHP(cx + 5, cy, cz + 1), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 5, cy + 1, cz + 1), 3, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 5, cy + 2, cz + 1), 2, 1, 1)),
 
-            //eyes
-            new Effect(goldBlock, HalfP(LocHP(cx - 2.1f, cy + 6, cz + 3), 4.2f, 1, 1.1f)),
-            new Effect(white, HalfP(LocHP(cx - 3, cy + 6, cz + 3), 6, 1, 1)),
+                //noseBridge
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 4, cz + 3), 8, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 1, cy + 6, cz + 3), 2, 3, 2)),
 
-            //eyebrow
-            new Effect(brown, HalfP(LocHP(cx - 5, cy + 8, cz + 1), 10, 1, 2)),
-            //pair left
-            new Effect(brown, HalfP(LocHP(cx - 6, cy + 7, cz + 2), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 5, cy + 7, cz + 3), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 3, cy + 7, cz + 4), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 3, cy + 8, cz + 3), 2, 1, 1)),
-            //pair right
-            new Effect(brown, HalfP(LocHP(cx + 5, cy + 7, cz + 2), 1, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 7, cz + 3), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 1, cy + 7, cz + 4), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 1, cy + 8, cz + 3), 2, 1, 1)),
+                //eyes
+                new Effect(goldBlock, HalfP(LocHP(cx - 2.1f, cy + 6, cz + 3), 4.2f, 1, 1.1f)),
+                new Effect(white, HalfP(LocHP(cx - 3, cy + 6, cz + 3), 6, 1, 1)),
 
-            //ears
-            //pair left
-            new Effect(brown, HalfP(LocHP(cx - 8, cy + 4, cz + 1), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 7, cy + 5, cz + 1), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 6, cy + 6, cz + 1), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 6, cy + 8, cz - 1), 2, 1, 2)),
-            //pair right
-            new Effect(brown, HalfP(LocHP(cx + 6, cy + 4, cz + 1), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 5, cy + 5, cz + 1), 2, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 5, cy + 6, cz + 1), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 4, cy + 8, cz - 1), 2, 1, 2)),
+                //eyebrow
+                new Effect(brown, HalfP(LocHP(cx - 5, cy + 8, cz + 1), 10, 1, 2)),
+                //pair left
+                new Effect(brown, HalfP(LocHP(cx - 6, cy + 7, cz + 2), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 5, cy + 7, cz + 3), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 3, cy + 7, cz + 4), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 3, cy + 8, cz + 3), 2, 1, 1)),
+                //pair right
+                new Effect(brown, HalfP(LocHP(cx + 5, cy + 7, cz + 2), 1, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 7, cz + 3), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 1, cy + 7, cz + 4), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 1, cy + 8, cz + 3), 2, 1, 1)),
 
-            //antler
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 9, cz + 1), 8, 1, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 1, cy + 9, cz + 2), 2, 1, 1)),
-            //pair left
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 10, cz + 1), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 3, cy + 10, cz), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 11, cz), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 5, cy + 12, cz), 1, 3, 1)),
-            new Effect(brown, HalfP(LocHP(cx - 4, cy + 15, cz), 1, 1, 1)),
-            //pair right
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 10, cz + 1), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 2, cy + 10, cz), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 11, cz), 1, 2, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 4, cy + 12, cz), 1, 3, 1)),
-            new Effect(brown, HalfP(LocHP(cx + 3, cy + 15, cz), 1, 1, 1)),
+                //ears
+                //pair left
+                new Effect(brown, HalfP(LocHP(cx - 8, cy + 4, cz + 1), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 7, cy + 5, cz + 1), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 6, cy + 6, cz + 1), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 6, cy + 8, cz - 1), 2, 1, 2)),
+                //pair right
+                new Effect(brown, HalfP(LocHP(cx + 6, cy + 4, cz + 1), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 5, cy + 5, cz + 1), 2, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 5, cy + 6, cz + 1), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 4, cy + 8, cz - 1), 2, 1, 2)),
 
-            new Effect(brown, ScaleP(LocP(-3, 0, -3), 6, 4, 4 + 4 * p))
-    };
+                //antler
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 9, cz + 1), 8, 1, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 1, cy + 9, cz + 2), 2, 1, 1)),
+                //pair left
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 10, cz + 1), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 3, cy + 10, cz), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 11, cz), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 5, cy + 12, cz), 1, 3, 1)),
+                new Effect(brown, HalfP(LocHP(cx - 4, cy + 15, cz), 1, 1, 1)),
+                //pair right
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 10, cz + 1), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 2, cy + 10, cz), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 11, cz), 1, 2, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 4, cy + 12, cz), 1, 3, 1)),
+                new Effect(brown, HalfP(LocHP(cx + 3, cy + 15, cz), 1, 1, 1)),
 
-    static float c1x = 0, c1y = 0, c1z = 4 * p + hp;
-    static Material mouth = Material.GRAY_CONCRETE;
-    static Material yellow = Material.YELLOW_WOOL;
-    static Effect[] Tiger = {
-            //chin
-            new Effect(white, HalfP(LocHP(c1x - 3, c1y - 2, c1z + 2), 6, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 2, c1y - 2, c1z + 3), 4, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y - 1, c1z + 2), 8, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 3, c1y - 1, c1z + 3), 6, 1, 2)),
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y - 1, c1z + 5), 2, 1, 1)),
+                new Effect(brown, ScaleP(LocP(-3, 0, -3), 6, 4, 4 + 4 * p))
+        };
 
-            //mouth
-            new Effect(mouth, HalfP(LocHP(c1x - 2, c1y - 1, c1z + 5), 1, 1, 1)),
-            new Effect(mouth, HalfP(LocHP(c1x + 1, c1y - 1, c1z + 5), 1, 1, 1)),
-            new Effect(mouth, HalfP(LocHP(c1x - 1, c1y, c1z + 5), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y + 1, c1z + 5), 2, 1, 1)),
+        float c1x = 0, c1y = 0, c1z = 1;
+        Material mouth = Material.GRAY_CONCRETE;
+        Material yellow = Material.YELLOW_WOOL;
+        Tiger = new Effect[]{
+                //chin
+                new Effect(white, HalfP(LocHP(c1x - 3, c1y - 2, c1z + 2), 6, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 2, c1y - 2, c1z + 3), 4, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y - 1, c1z + 2), 8, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 3, c1y - 1, c1z + 3), 6, 1, 2)),
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y - 1, c1z + 5), 2, 1, 1)),
 
-            //nose
-            new Effect(white, HalfP(LocHP(c1x - 2, c1y, c1z + 5), 1, 4, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 1, c1y, c1z + 5), 1, 4, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y + 2, c1z + 6), 2, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 3, c1y + 2, c1z + 5), 4, 1, 1)),
+                //mouth
+                new Effect(mouth, HalfP(LocHP(c1x - 2, c1y - 1, c1z + 5), 1, 1, 1)),
+                new Effect(mouth, HalfP(LocHP(c1x + 1, c1y - 1, c1z + 5), 1, 1, 1)),
+                new Effect(mouth, HalfP(LocHP(c1x - 1, c1y, c1z + 5), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y + 1, c1z + 5), 2, 1, 1)),
 
-            //cheek(under)
-            new Effect(white, HalfP(LocHP(c1x - 3, c1y + 1, c1z + 4), 6, 4, 1)),
-            //pair left
-            new Effect(black, HalfP(LocHP(c1x - 3, c1y, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 5, c1y + 1, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y, c1z + 3), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 5, c1y, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 1, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 2, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 1, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 8, c1y + 2, c1z + 2), 1, 4, 1)),
-            //cheek right
-            new Effect(black, HalfP(LocHP(c1x + 2, c1y, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 1, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y, c1z + 3), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 4, c1y, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 1, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 2, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 5, c1y, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 6, c1y + 1, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 7, c1y + 2, c1z + 2), 1, 4, 1)),
+                //nose
+                new Effect(white, HalfP(LocHP(c1x - 2, c1y, c1z + 5), 1, 4, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 1, c1y, c1z + 5), 1, 4, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y + 2, c1z + 6), 2, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 3, c1y + 2, c1z + 5), 4, 1, 1)),
 
-            //cheek(up)
-            //pair left
-            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 2, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y + 2, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y + 3, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 5, c1y + 3, c1z + 3), 2, 2, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 3, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 3, c1z + 3), 1, 2, 1)),
-            //pair right
-            new Effect(black, HalfP(LocHP(c1x + 3, c1y + 2, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 5, c1y + 2, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 3), 2, 2, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 3, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 6, c1y + 3, c1z + 3), 1, 2, 1)),
+                //cheek(under)
+                new Effect(white, HalfP(LocHP(c1x - 3, c1y + 1, c1z + 4), 6, 4, 1)),
+                //pair left
+                new Effect(black, HalfP(LocHP(c1x - 3, c1y, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 5, c1y + 1, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y, c1z + 3), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 5, c1y, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 6, c1y + 1, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 7, c1y + 2, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 1, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 8, c1y + 2, c1z + 2), 1, 4, 1)),
+                //cheek right
+                new Effect(black, HalfP(LocHP(c1x + 2, c1y, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 1, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y, c1z + 3), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 4, c1y, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 5, c1y + 1, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 6, c1y + 2, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 5, c1y, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 6, c1y + 1, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 7, c1y + 2, c1z + 2), 1, 4, 1)),
 
-            //eyebrow
-            //pair left
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y + 5, c1z + 3), 1, 1, 1)),
-            new Effect(yellow, HalfP(LocHP(c1x - 4, c1y + 6, c1z + 3), 1, 1, 1)),
-            new Effect(yellow, HalfP(LocHP(c1x - 3, c1y + 6, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 2, c1y + 7, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 5, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y + 5, c1z + 3), 1, 2, 1)),
-            //pair right
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 5, c1z + 3), 1, 1, 1)),
-            new Effect(yellow, HalfP(LocHP(c1x + 3, c1y + 6, c1z + 3), 1, 1, 1)),
-            new Effect(yellow, HalfP(LocHP(c1x + 2, c1y + 6, c1z + 4), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 1, c1y + 7, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 5, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 5, c1y + 5, c1z + 3), 1, 2, 1)),
+                //cheek(up)
+                //pair left
+                new Effect(black, HalfP(LocHP(c1x - 5, c1y + 2, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y + 2, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y + 3, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 5, c1y + 3, c1z + 3), 2, 2, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 6, c1y + 3, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 3, c1z + 3), 1, 2, 1)),
+                //pair right
+                new Effect(black, HalfP(LocHP(c1x + 3, c1y + 2, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 5, c1y + 2, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 3, c1z + 3), 2, 2, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 5, c1y + 3, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 6, c1y + 3, c1z + 3), 1, 2, 1)),
 
-            //eye
-            new Effect(goldBlock, HalfP(LocHP(c1x - 3, c1y + 5, c1z + 4), 6, 1, 1)),
+                //eyebrow
+                //pair left
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y + 5, c1z + 3), 1, 1, 1)),
+                new Effect(yellow, HalfP(LocHP(c1x - 4, c1y + 6, c1z + 3), 1, 1, 1)),
+                new Effect(yellow, HalfP(LocHP(c1x - 3, c1y + 6, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 2, c1y + 7, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 5, c1y + 5, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y + 5, c1z + 3), 1, 2, 1)),
+                //pair right
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 5, c1z + 3), 1, 1, 1)),
+                new Effect(yellow, HalfP(LocHP(c1x + 3, c1y + 6, c1z + 3), 1, 1, 1)),
+                new Effect(yellow, HalfP(LocHP(c1x + 2, c1y + 6, c1z + 4), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 1, c1y + 7, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 4, c1y + 5, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 5, c1y + 5, c1z + 3), 1, 2, 1)),
 
-            //eyeMiddle
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y + 4, c1z + 5), 2, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y + 6, c1z + 4), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 2, c1y + 5, c1z + 5), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 1, c1y + 5, c1z + 5), 1, 2, 1)),
+                //eye
+                new Effect(goldBlock, HalfP(LocHP(c1x - 3, c1y + 5, c1z + 4), 6, 1, 1)),
 
-            //head
-            //fore
-            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 9, c1z + 2), 12, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 1, c1y + 7, c1z + 3), 2, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 1, c1y + 10, c1z + 2), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 1, c1y + 8, c1z + 3), 2, 2, 1)),
-            //pair left
-            new Effect(black, HalfP(LocHP(c1x - 4, c1y + 7, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 5, c1y + 7, c1z + 3), 1, 2, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 3, c1y + 7, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 2, c1y + 8, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 2, c1y + 9, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 3, c1y + 8, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y + 9, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y + 10, c1z + 2), 3, 1, 1)),
-            //pair right
-            new Effect(black, HalfP(LocHP(c1x + 3, c1y + 7, c1z + 3), 1, 2, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 4, c1y + 7, c1z + 3), 1, 2, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 2, c1y + 7, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 8, c1z + 4), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 1, c1y + 9, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 2, c1y + 8, c1z + 3), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 2, c1y + 9, c1z + 3), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 1, c1y + 10, c1z + 2), 3, 1, 1)),
-            //left
-            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 5, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 8, c1y + 6, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 7, c1y + 7, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 8, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 6, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y + 7, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 8, c1z + 2), 1, 2, 1)),
-            //right
-            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 5, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 7, c1y + 6, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 6, c1y + 7, c1z + 2), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 5, c1y + 8, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 6, c1y + 6, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 5, c1y + 7, c1z + 2), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 6, c1y + 8, c1z + 2), 1, 2, 1)),
+                //eyeMiddle
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y + 4, c1z + 5), 2, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y + 6, c1z + 4), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 2, c1y + 5, c1z + 5), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 1, c1y + 5, c1z + 5), 1, 2, 1)),
 
-            //ears
-            //pair left
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y + 10, c1z), 3, 1, 2)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 11, c1z), 5, 1, 2)),
-            new Effect(white, HalfP(LocHP(c1x - 6, c1y + 13, c1z), 2, 1, 2)),
-            new Effect(black, HalfP(LocHP(c1x - 5, c1y + 11, c1z + 1), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x - 6, c1y + 12, c1z + 1), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 12, c1z + 1), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 4, c1y + 12, c1z + 1), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x - 7, c1y + 12, c1z), 4, 1, 1)),
-            //pair right
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 10, c1z), 3, 1, 2)),
-            new Effect(white, HalfP(LocHP(c1x + 2, c1y + 11, c1z), 5, 1, 2)),
-            new Effect(white, HalfP(LocHP(c1x + 4, c1y + 13, c1z), 2, 1, 2)),
-            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 11, c1z + 1), 1, 1, 1)),
-            new Effect(black, HalfP(LocHP(c1x + 4, c1y + 12, c1z + 1), 2, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 6, c1y + 12, c1z + 1), 1, 1, 1)),
-            new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z), 4, 1, 1)),
+                //head
+                //fore
+                new Effect(black, HalfP(LocHP(c1x - 6, c1y + 9, c1z + 2), 12, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 1, c1y + 7, c1z + 3), 2, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 1, c1y + 10, c1z + 2), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 1, c1y + 8, c1z + 3), 2, 2, 1)),
+                //pair left
+                new Effect(black, HalfP(LocHP(c1x - 4, c1y + 7, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 5, c1y + 7, c1z + 3), 1, 2, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 3, c1y + 7, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 2, c1y + 8, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 2, c1y + 9, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 3, c1y + 8, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y + 9, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y + 10, c1z + 2), 3, 1, 1)),
+                //pair right
+                new Effect(black, HalfP(LocHP(c1x + 3, c1y + 7, c1z + 3), 1, 2, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 4, c1y + 7, c1z + 3), 1, 2, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 2, c1y + 7, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 1, c1y + 8, c1z + 4), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 1, c1y + 9, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 2, c1y + 8, c1z + 3), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 2, c1y + 9, c1z + 3), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 1, c1y + 10, c1z + 2), 3, 1, 1)),
+                //left
+                new Effect(black, HalfP(LocHP(c1x - 7, c1y + 5, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 8, c1y + 6, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 7, c1y + 7, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 6, c1y + 8, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 6, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y + 7, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 8, c1z + 2), 1, 2, 1)),
+                //right
+                new Effect(black, HalfP(LocHP(c1x + 6, c1y + 5, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 7, c1y + 6, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 6, c1y + 7, c1z + 2), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 5, c1y + 8, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 6, c1y + 6, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 5, c1y + 7, c1z + 2), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 6, c1y + 8, c1z + 2), 1, 2, 1)),
 
-            new Effect(white, ScaleP(LocP(-3, 0, -3), 6, 4 + p, 4 + 3 * p + hp))
+                //ears
+                //pair left
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y + 10, c1z), 3, 1, 2)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 11, c1z), 5, 1, 2)),
+                new Effect(white, HalfP(LocHP(c1x - 6, c1y + 13, c1z), 2, 1, 2)),
+                new Effect(black, HalfP(LocHP(c1x - 5, c1y + 11, c1z + 1), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x - 6, c1y + 12, c1z + 1), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 12, c1z + 1), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 4, c1y + 12, c1z + 1), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x - 7, c1y + 12, c1z), 4, 1, 1)),
+                //pair right
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 10, c1z), 3, 1, 2)),
+                new Effect(white, HalfP(LocHP(c1x + 2, c1y + 11, c1z), 5, 1, 2)),
+                new Effect(white, HalfP(LocHP(c1x + 4, c1y + 13, c1z), 2, 1, 2)),
+                new Effect(black, HalfP(LocHP(c1x + 4, c1y + 11, c1z + 1), 1, 1, 1)),
+                new Effect(black, HalfP(LocHP(c1x + 4, c1y + 12, c1z + 1), 2, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z + 1), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 6, c1y + 12, c1z + 1), 1, 1, 1)),
+                new Effect(white, HalfP(LocHP(c1x + 3, c1y + 12, c1z), 4, 1, 1)),
 
-    };
+                new Effect(white, ScaleP(LocP(-3, 0, -3), 6, 4 + p, 4 + 3 * p + hp))
+
+        };
+    }
+
+    static Effect[] cyanLoong;
+    
+    static Effect[] darkLoong;
+
+    static {
+        float tx = -8;
+        float ty = p;
+        float tz = -7;
+        cyanLoong = new Effect[]{
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 0, ty + 2, tz + 12), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 1, tz + 4), 2, 4, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 1, ty + 1, tz + 14), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 2, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 5, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 0, tz + 3), 2, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 1, tz + 3), 1, 6, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 1, tz + 6), 1, 1, 2)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 2, ty + 2, tz + 6), 1, 2, 2)),
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 2, ty + 2, tz + 14), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 2, ty + 3, tz + 8), 3, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 2, ty + 4, tz + 6), 1, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 5, tz + 5), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 2, ty + 5, tz + 6), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 6, tz + 4), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 2, ty + 6, tz + 6), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 0, tz + 1), 2, 2, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 0, tz + 6), 1, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 1, tz + 8), 2, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 2, tz + 2), 10, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 2, tz + 9), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 3, ty + 2, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 3, tz + 2), 2, 3, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 3, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 4, tz + 7), 1, 3, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 5, tz + 9), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 6, tz + 2), 1, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 6, tz + 5), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 11, tz + 6), 1, 2, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 3, ty + 13, tz + 6), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 0, tz + 3), 8, 1, 5)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 1, tz + 9), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 2, tz + 10), 1, 2, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 2, tz + 11), 8, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 3, tz + 1), 2, 4, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 4, tz + 8), 1, 4, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 4, tz + 10), 1, 2, 1)),
+                new Effect(Material.YELLOW_WOOL, HalfP(LocHP(tx + 4, ty + 4, tz + 11), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 6, tz + 9), 1, 1, 2)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 6, tz + 11), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 7, tz + 2), 8, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 7, tz + 4), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 7, tz + 5), 8, 1, 3)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 7, tz + 9), 8, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 9, tz + 7), 2, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 10, tz + 7), 1, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 4, ty + 11, tz + 7), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 0, tz + 2), 8, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 0, tz + 8), 7, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 0, tz + 9), 6, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 1, tz + 10), 6, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 1, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 2, tz + 0), 2, 3, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 2, tz + 1), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 2, tz + 10), 6, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 2, tz + 12), 6, 2, 1)),
+                new Effect(Material.GOLD_BLOCK, HalfP(LocHP(tx + 5, ty + 4, tz + 12), 6, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 5, tz + 0), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 5, ty + 5, tz + 11), 6, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 5, tz + 12), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 6, tz + 11), 6, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 7, tz + 1), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 7, tz + 8), 7, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 7, tz + 10), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 8, tz + 2), 6, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 5, ty + 8, tz + 7), 1, 1, 3)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 6, ty + 0, tz + 10), 4, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 1, tz + 0), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 6, ty + 1, tz + 12), 4, 1, 3)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 6, ty + 2, tz + 13), 4, 1, 3)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 6, ty + 2, tz + 16), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 3, tz + 2), 4, 4, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 6, ty + 3, tz + 13), 4, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 6, ty + 3, tz + 14), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 6, ty + 4, tz + 13), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 6, ty + 5, tz + 12), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 6, ty + 6, tz + 12), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 8, tz + 4), 4, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 6, ty + 8, tz + 8), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 9, tz + 3), 4, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 0, tz + 1), 2, 4, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 7, ty + 0, tz + 11), 3, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 0, tz + 13), 2, 1, 3)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 7, ty + 0, tz + 16), 2, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 1, tz + 15), 2, 1, 2)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 7, ty + 1, tz + 17), 2, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 2, tz + 16), 2, 1, 2)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 3, tz + 14), 2, 1, 2)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 4, tz + 13), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 5, tz + 1), 2, 3, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 7, ty + 5, tz + 12), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 7, ty + 6, tz + 10), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 8, tz + 5), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 9, tz + 2), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 9, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 9, ty + 1, tz + 0), 1, 4, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 9, ty + 1, tz + 15), 2, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 9, ty + 2, tz + 16), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 9, ty + 3, tz + 14), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 9, ty + 4, tz + 13), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 9, ty + 5, tz + 12), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 9, ty + 6, tz + 12), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 9, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 9, ty + 7, tz + 10), 2, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 9, ty + 8, tz + 8), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 10, ty + 2, tz + 0), 1, 4, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 10, ty + 6, tz + 1), 2, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 10, ty + 8, tz + 7), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 10, ty + 9, tz + 8), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 0, tz + 1), 2, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 1, tz + 8), 2, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 1, tz + 9), 1, 6, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 2, tz + 10), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 11, ty + 2, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 3, tz + 1), 1, 3, 2)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 11, ty + 3, tz + 8), 3, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 4, tz + 8), 3, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 4, tz + 10), 1, 2, 1)),
+                new Effect(Material.YELLOW_WOOL, HalfP(LocHP(tx + 11, ty + 4, tz + 11), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 5, tz + 8), 2, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 6, tz + 10), 1, 1, 1)),
+                new Effect(Material.CYAN_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 6, tz + 11), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 7, tz + 4), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 9, tz + 7), 1, 3, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 11, ty + 10, tz + 8), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 0, tz + 3), 2, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 0, tz + 6), 1, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 1, tz + 3), 1, 1, 5)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 2, tz + 9), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 3, tz + 2), 1, 4, 1)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 12, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 4, tz + 7), 2, 2, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 5, tz + 9), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 6, tz + 3), 2, 1, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 6, tz + 5), 1, 1, 3)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 11, tz + 6), 1, 2, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 12, ty + 13, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 1, tz + 3), 1, 1, 5)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 2, tz + 3), 1, 4, 3)),
+                new Effect(Material.CYAN_CONCRETE, HalfP(LocHP(tx + 13, ty + 2, tz + 6), 1, 2, 2)),
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 13, ty + 2, tz + 14), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 13, ty + 4, tz + 6), 1, 3, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 6, tz + 5), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 1, tz + 4), 1, 4, 2)),
+                new Effect(Material.DARK_PRISMARINE, HalfP(LocHP(tx + 14, ty + 1, tz + 14), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 2, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 5, tz + 4), 1, 1, 1)),
+                new Effect(Material.DARK_PRISMARINE_SLAB, HalfP(LocHP(tx + 15, ty + 2, tz + 12), 1, 1, 2)),
+        };
+        
+        darkLoong  = new Effect[]{
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 0, ty + 2, tz + 12), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 1, tz + 4), 2, 4, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 1, ty + 1, tz + 14), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 2, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 1, ty + 5, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 0, tz + 3), 2, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 1, tz + 3), 1, 6, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 1, tz + 6), 1, 1, 2)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 2, ty + 2, tz + 6), 1, 2, 2)),
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 2, ty + 2, tz + 14), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 2, ty + 3, tz + 8), 3, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 2, ty + 4, tz + 6), 1, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 5, tz + 5), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 2, ty + 5, tz + 6), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 2, ty + 6, tz + 4), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 2, ty + 6, tz + 6), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 0, tz + 1), 2, 2, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 0, tz + 6), 1, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 1, tz + 8), 2, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 2, tz + 2), 10, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 2, tz + 9), 2, 1, 1)),
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 3, ty + 2, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 3, tz + 2), 2, 3, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 3, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 4, tz + 7), 1, 3, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 5, tz + 9), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 3, ty + 6, tz + 2), 1, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 6, tz + 5), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 11, tz + 6), 1, 2, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 3, ty + 13, tz + 6), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 0, tz + 3), 8, 1, 5)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 1, tz + 9), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 2, tz + 10), 1, 2, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 4, ty + 2, tz + 11), 8, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 3, tz + 1), 2, 4, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 4, tz + 8), 1, 4, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 4, ty + 4, tz + 10), 1, 2, 1)),
+                new Effect(Material.YELLOW_WOOL, HalfP(LocHP(tx + 4, ty + 4, tz + 11), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 6, tz + 9), 1, 1, 2)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 4, ty + 6, tz + 11), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 7, tz + 2), 8, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 4, ty + 7, tz + 4), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 7, tz + 5), 8, 1, 3)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 7, tz + 9), 8, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 9, tz + 7), 2, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 10, tz + 7), 1, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 4, ty + 11, tz + 7), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 0, tz + 2), 8, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 0, tz + 8), 7, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 0, tz + 9), 6, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 5, ty + 1, tz + 10), 6, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 1, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 2, tz + 0), 2, 3, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 2, tz + 1), 1, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 5, ty + 2, tz + 10), 6, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 5, ty + 2, tz + 12), 6, 2, 1)),
+                new Effect(Material.GOLD_BLOCK, HalfP(LocHP(tx + 5, ty + 4, tz + 12), 6, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 5, tz + 0), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 5, ty + 5, tz + 11), 6, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 5, ty + 5, tz + 12), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 6, tz + 11), 6, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 7, tz + 1), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 7, tz + 8), 7, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 7, tz + 10), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 5, ty + 8, tz + 2), 6, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 5, ty + 8, tz + 7), 1, 1, 3)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 6, ty + 0, tz + 10), 4, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 1, tz + 0), 1, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 6, ty + 1, tz + 12), 4, 1, 3)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 6, ty + 2, tz + 13), 4, 1, 3)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 6, ty + 2, tz + 16), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 3, tz + 2), 4, 4, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 6, ty + 3, tz + 13), 4, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 6, ty + 3, tz + 14), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 6, ty + 4, tz + 13), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 6, ty + 5, tz + 12), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 6, ty + 6, tz + 12), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 8, tz + 4), 4, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 6, ty + 8, tz + 8), 1, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 6, ty + 9, tz + 3), 4, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 0, tz + 1), 2, 4, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 7, ty + 0, tz + 11), 3, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 7, ty + 0, tz + 13), 2, 1, 3)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 7, ty + 0, tz + 16), 2, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 7, ty + 1, tz + 15), 2, 1, 2)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 7, ty + 1, tz + 17), 2, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 7, ty + 2, tz + 16), 2, 1, 2)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 7, ty + 3, tz + 14), 2, 1, 2)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 7, ty + 4, tz + 13), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 5, tz + 1), 2, 3, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 5, tz + 12), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 7, ty + 6, tz + 10), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 8, tz + 5), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 9, tz + 2), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 7, ty + 9, tz + 4), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 9, ty + 1, tz + 0), 1, 4, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 9, ty + 1, tz + 15), 2, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 9, ty + 2, tz + 16), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 9, ty + 3, tz + 14), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 9, ty + 4, tz + 13), 1, 1, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 9, ty + 5, tz + 12), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 9, ty + 6, tz + 12), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 9, ty + 7, tz + 4), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 9, ty + 7, tz + 10), 2, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 9, ty + 8, tz + 8), 2, 1, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 10, ty + 2, tz + 0), 1, 4, 2)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 10, ty + 6, tz + 1), 2, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 10, ty + 8, tz + 7), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 10, ty + 9, tz + 8), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 0, tz + 1), 2, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 1, tz + 8), 2, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 1, tz + 9), 1, 6, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 2, tz + 10), 1, 2, 1)),
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 11, ty + 2, tz + 15), 2, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 3, tz + 1), 1, 3, 2)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 11, ty + 3, tz + 8), 3, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 4, tz + 8), 3, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 11, ty + 4, tz + 10), 1, 2, 1)),
+                new Effect(Material.YELLOW_WOOL, HalfP(LocHP(tx + 11, ty + 4, tz + 11), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 5, tz + 8), 2, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 6, tz + 10), 1, 1, 1)),
+                new Effect(Material.BLACKSTONE, HalfP(LocHP(tx + 11, ty + 6, tz + 11), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 11, ty + 7, tz + 4), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 9, tz + 7), 1, 3, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 11, ty + 10, tz + 8), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 0, tz + 3), 2, 1, 3)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 0, tz + 6), 1, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 1, tz + 3), 1, 1, 5)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 2, tz + 9), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 3, tz + 2), 1, 4, 1)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 12, ty + 3, tz + 9), 1, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 4, tz + 7), 2, 2, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 5, tz + 9), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 12, ty + 6, tz + 3), 2, 1, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 6, tz + 5), 1, 1, 3)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 11, tz + 6), 1, 2, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 12, ty + 13, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 1, tz + 3), 1, 1, 5)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 2, tz + 3), 1, 4, 3)),
+                new Effect(Material.BLACK_SHULKER_BOX, HalfP(LocHP(tx + 13, ty + 2, tz + 6), 1, 2, 2)),
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 13, ty + 2, tz + 14), 1, 1, 1)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 13, ty + 4, tz + 6), 1, 3, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 13, ty + 6, tz + 5), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 1, tz + 4), 1, 4, 2)),
+                new Effect(Material.BLACK_CONCRETE_POWDER, HalfP(LocHP(tx + 14, ty + 1, tz + 14), 1, 1, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 2, tz + 6), 1, 2, 1)),
+                new Effect(Material.LIGHT_GRAY_WOOL, HalfP(LocHP(tx + 14, ty + 5, tz + 4), 1, 1, 1)),
+                new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, HalfP(LocHP(tx + 15, ty + 2, tz + 12), 1, 1, 2)),
+        };
+    }
 
     public static Transformation cloneWithScale(Transformation transformation, float sx, float sy, float sz) {
         return new Transformation(
