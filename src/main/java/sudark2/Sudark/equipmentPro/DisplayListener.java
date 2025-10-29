@@ -1,6 +1,7 @@
 package sudark2.Sudark.equipmentPro;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -35,8 +36,14 @@ public class DisplayListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent e) {
         Player pl = e.getPlayer();
         String qq = getQQ(pl);
+        World nowWorld = pl.getWorld();
         if (PlayerHats.containsKey(qq)) {
             PlayerHats.get(qq).forEach(bd -> {
+                if(!nowWorld.equals(bd.getWorld())){
+                    bd.teleport(pl.getEyeLocation().subtract(0, 2 * p, 0).clone());
+                    pl.hideEntity(get(), bd);
+                    return;
+                }
                 bd.teleport(pl.getEyeLocation().subtract(0, 2 * p, 0).clone());
             });
         }
