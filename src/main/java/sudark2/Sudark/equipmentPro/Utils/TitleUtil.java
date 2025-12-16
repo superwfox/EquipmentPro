@@ -1,11 +1,11 @@
-package sudark2.Sudark.equipmentPro;
+package sudark2.Sudark.equipmentPro.Utils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
 
-public class Title {
+public class TitleUtil {
 
     public static void title(Player pl, String t1, String t2) {
         new BukkitRunnable() {

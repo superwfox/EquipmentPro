@@ -1,4 +1,4 @@
-package sudark2.Sudark.equipmentPro;
+package sudark2.Sudark.equipmentPro.EffectBasic;
 
 import org.bukkit.Material;
 import org.bukkit.util.Transformation;

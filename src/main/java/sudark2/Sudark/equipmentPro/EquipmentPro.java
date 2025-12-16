@@ -1,17 +1,20 @@
 package sudark2.Sudark.equipmentPro;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import sudark2.Sudark.equipmentPro.Command.CommandHander;
+import sudark2.Sudark.equipmentPro.File.FileManager;
+import sudark2.Sudark.equipmentPro.Listener.DisplayListener;
+import sudark2.Sudark.equipmentPro.Listener.MenuListener;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public final class EquipmentPro extends JavaPlugin {
 
-    static Set<BlockDisplay> bls = new HashSet<>();
+    public static Set<BlockDisplay> BLS = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -32,6 +35,6 @@ public final class EquipmentPro extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        bls.forEach(BlockDisplay::remove);
+        BLS.forEach(BlockDisplay::remove);
     }
 }

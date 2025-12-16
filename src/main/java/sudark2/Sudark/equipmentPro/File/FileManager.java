@@ -1,4 +1,4 @@
-package sudark2.Sudark.equipmentPro;
+package sudark2.Sudark.equipmentPro.File;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
