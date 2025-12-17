@@ -1,4 +1,4 @@
-# EquipmentPro
+# EquipmentPro  [English documention](https://github.com/superwfox/EquipmentPro/blob/master/README_EN)
 
 基于 Paper 1.21.5 的 Minecraft 头饰系统插件，使用 BlockDisplay 实体实现 3D 头饰效果。
 
