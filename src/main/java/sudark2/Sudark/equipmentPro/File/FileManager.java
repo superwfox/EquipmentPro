@@ -11,18 +11,22 @@ import org.bukkit.persistence.PersistentDataType;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.bukkit.Bukkit.getLogger;
 
 public class FileManager {
 
-    public static Map<String, String> hairMap = new HashMap<>();
+    public static Map<String, PlayerData> dataMap = new HashMap<>();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private static File fileFolder = Bukkit.getPluginManager().getPlugin("EquipmentPro").getDataFolder();
     private static final File dataFile = new File(fileFolder, "data.json");
+
+    public static class PlayerData {
+        public Set<String> owned = new HashSet<>();
+        public String equipped = null;
+    }
 
     public static void checkFile() {
         if (!fileFolder.exists()) fileFolder.mkdirs();
@@ -30,25 +34,49 @@ public class FileManager {
 
     public static void save() {
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(dataFile), StandardCharsets.UTF_8)) {
-            gson.toJson(hairMap, writer);
+            gson.toJson(dataMap, writer);
         } catch (IOException e) {
             getLogger().warning("保存头饰数据失败: " + e.getMessage());
         }
     }
 
-
-    public static Map<String, String> load() {
+    public static void load() {
+        if (!dataFile.exists()) {
+            dataMap = new HashMap<>();
+            return;
+        }
         try (Reader reader = new FileReader(dataFile)) {
-            Gson gson = new Gson();
-            Type type = new TypeToken<Map<String, String>>() {
-            }.getType();
-            return gson.fromJson(reader, type);
+            Type type = new TypeToken<Map<String, PlayerData>>() {}.getType();
+            dataMap = gson.fromJson(reader, type);
+            if (dataMap == null) dataMap = new HashMap<>();
         } catch (IOException e) {
-            e.printStackTrace();
-            return new HashMap<>(); // 出错时返回空 Map
+            dataMap = new HashMap<>();
         }
     }
 
+    public static PlayerData getData(String qq) {
+        return dataMap.computeIfAbsent(qq, k -> new PlayerData());
+    }
+
+    public static boolean hasHat(String qq, String hatName) {
+        PlayerData data = dataMap.get(qq);
+        return data != null && data.owned.contains(hatName);
+    }
+
+    public static void addHat(String qq, String hatName) {
+        getData(qq).owned.add(hatName);
+        save();
+    }
+
+    public static void equipHat(String qq, String hatName) {
+        getData(qq).equipped = hatName;
+        save();
+    }
+
+    public static String getEquipped(String qq) {
+        PlayerData data = dataMap.get(qq);
+        return data != null ? data.equipped : null;
+    }
 
     public static String getQQ(Player pl) {
         NamespacedKey key = new NamespacedKey("sudark", "qq");

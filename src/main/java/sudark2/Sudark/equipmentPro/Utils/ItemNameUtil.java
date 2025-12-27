@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ItemNameUtil {
 
-    public static ItemStack name(Material material, String name, String lore) {
+    public static ItemStack name(Material material, String name, String... lore) {
         ItemStack stack = new ItemStack(material);
         ItemMeta meta = stack.getItemMeta();
         meta.setDisplayName(name);
@@ -16,5 +16,4 @@ public class ItemNameUtil {
         stack.setItemMeta(meta);
         return stack;
     }
-
 }

@@ -10,27 +10,27 @@ import sudark2.Sudark.equipmentPro.File.FileManager;
 import java.util.*;
 
 import static sudark2.Sudark.equipmentPro.EffectBasic.EquipmentDisplay.getEffect;
-import static sudark2.Sudark.equipmentPro.EquipmentPro.BLS;
-import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
-import static sudark2.Sudark.equipmentPro.File.FileManager.getQQ;
-import static sudark2.Sudark.equipmentPro.File.FileManager.hairMap;
+import static sudark2.Sudark.equipmentPro.EquipmentPro.*;
+import static sudark2.Sudark.equipmentPro.File.FileManager.*;
 
 public class EffectUtils {
 
-    public static Map<String, List<BlockDisplay>> PlayerHats = new HashMap<>();
-
-    public static List<BlockDisplay> spawn(Location loc, Effect[] e, Player owner) {
+    public static List<BlockDisplay> spawn(Location loc, Effect[] e, Player owner, float scaleMult) {
         List<BlockDisplay> spawned = new ArrayList<>();
         for (Effect effect : e) {
             BlockDisplay bl = (BlockDisplay) loc.getWorld().spawnEntity(loc, EntityType.BLOCK_DISPLAY);
-
             bl.setBlock(effect.getMaterial().createBlockData());
-            bl.setTransformation(effect.getTransformation());
-
+            if (scaleMult == 1f) {
+                bl.setTransformation(effect.getTransformation());
+            } else {
+                var t = effect.getTransformation();
+                var trans = t.getTranslation().mul(scaleMult);
+                var scale = t.getScale().mul(scaleMult);
+                bl.setTransformation(new org.bukkit.util.Transformation(trans, t.getLeftRotation(), scale, t.getRightRotation()));
+            }
             bl.setTeleportDuration(1);
             bl.setInterpolationDuration(0);
             if (owner != null) owner.hideEntity(get(), bl);
-
             BLS.add(bl);
             spawned.add(bl);
         }
@@ -38,11 +38,25 @@ public class EffectUtils {
         return spawned;
     }
 
+    public static List<BlockDisplay> spawn(Location loc, Effect[] e, Player owner) {
+        return spawn(loc, e, owner, 1f);
+    }
+
+    public static List<BlockDisplay> spawnPreview(Player pl, String hatId) throws Exception {
+        Effect[] effect = getEffect(hatId);
+        Location loc = pl.getLocation().add(pl.getLocation().getDirection().multiply(0.6));
+        loc.setY(pl.getEyeLocation().getY() - 4 * effect[0].getScale());
+        loc.setPitch(0);
+        return spawn(loc, effect, null, 2f);
+    }
+
     public static void loadEffectsForPlayer(Player pl) throws NoSuchFieldException, IllegalAccessException {
         String qq = getQQ(pl);
         if (qq == null) return;
+        String equipped = getEquipped(qq);
+        if (equipped == null) return;
 
-        Effect[] effect = getEffect(hairMap.get(qq));
+        Effect[] effect = getEffect(equipped);
         List<BlockDisplay> bds = spawn(pl.getEyeLocation().subtract(0, 2 * effect[0].getScale(), 0).clone(), effect, pl);
         PlayerHats.put(qq, bds);
     }
@@ -50,14 +64,16 @@ public class EffectUtils {
     public static void unloadEffectsForPlayer(Player pl) {
         String qq = getQQ(pl);
         if (qq == null) return;
-        PlayerHats.get(qq).forEach(BlockDisplay::remove);
-        PlayerHats.remove(qq);
+        if (PlayerHats.containsKey(qq)) {
+            PlayerHats.get(qq).forEach(BlockDisplay::remove);
+            PlayerHats.remove(qq);
+        }
     }
 
     public static void deleteHat(Player pl) {
         String qq = getQQ(pl);
         if (PlayerHats.containsKey(qq)) PlayerHats.get(qq).forEach(BlockDisplay::remove);
-        hairMap.remove(qq);
+        getData(qq).equipped = null;
         PlayerHats.remove(qq);
         FileManager.save();
     }

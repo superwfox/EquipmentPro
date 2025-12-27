@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import static sudark2.Sudark.equipmentPro.EquipmentPro.PlayerHats;
 import static sudark2.Sudark.equipmentPro.EquipmentPro.get;
 import static sudark2.Sudark.equipmentPro.File.FileManager.getQQ;
 import static sudark2.Sudark.equipmentPro.Utils.EffectUtils.*;

@@ -9,12 +9,12 @@ import sudark2.Sudark.equipmentPro.File.FileManager;
 import sudark2.Sudark.equipmentPro.Listener.DisplayListener;
 import sudark2.Sudark.equipmentPro.Listener.MenuListener;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public final class EquipmentPro extends JavaPlugin {
 
     public static Set<BlockDisplay> BLS = new HashSet<>();
+    public static Map<String, List<BlockDisplay>> PlayerHats = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -25,8 +25,6 @@ public final class EquipmentPro extends JavaPlugin {
 
         FileManager.checkFile();
         FileManager.load();
-
-
     }
 
     public static Plugin get() {
