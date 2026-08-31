@@ -10,8 +10,13 @@ public class EquipmentDisplay {
     static float p = 0.125f;
     static float hp = 0.07f;
 
-    public static Effect[] getEffect(String style) throws NoSuchFieldException, IllegalAccessException {
-        return (Effect[]) EquipmentDisplay.class.getDeclaredField(style).get(null);
+    public static Effect[] getEffect(String style) {
+        Effect[] effects = null;
+        try {
+            effects = (Effect[]) EquipmentDisplay.class.getDeclaredField(style).get(null);
+        } catch (Exception ignored) {
+        }
+        return effects;
     }
 
     static Effect[] obsidian = {
@@ -178,15 +183,6 @@ public class EquipmentDisplay {
             new Effect(Material.GOLD_BLOCK, asl(1, 7, -2, 1, 1, 1, p), p),
             new Effect(Material.GOLD_BLOCK, asl(-1, 7, -1, 2, 1, 2, p), p),
             new Effect(Material.HONEY_BLOCK, asl(-1, 5, -1, 2, 2, 2, p), p),
-    };
-
-    static Effect[] test = {
-            new Effect(Material.GOLD_BLOCK, asl(0, 4, 0, 1, 1, 1, p), p),
-            new Effect(Material.IRON_BLOCK, asl(1, 4, 0, 1, 1, 1, p), p),
-            new Effect(Material.IRON_BLOCK, asl(2, 4, 2, 1, 1, 1, p), p),
-            new Effect(Material.IRON_BLOCK, asl(2, 0, 2, 1, 1, 1, p), p),
-            new Effect(Material.IRON_BLOCK, asl(-3, 0, -3, 1, 1, 1, p), p),
-            new Effect(Material.IRON_BLOCK, asl(-3, 4, -3, 1, 1, 1, p), p)
     };
 
     static Effect[] Dragon;
@@ -405,8 +401,9 @@ public class EquipmentDisplay {
 
     static {
         float tx = -8;
-        float ty = p;
+        float ty = -1;
         float tz = -6;
+        float hp = 0.075f;
         cyanLoong = new Effect[]{
                 new Effect(Material.DARK_PRISMARINE_SLAB, asl(tx + 0, ty + 2, tz + 12, 1, 1, 2, hp), hp),
                 new Effect(Material.LIGHT_GRAY_WOOL, asl(tx + 1, ty + 1, tz + 4, 2, 4, 2, hp), hp),
@@ -714,6 +711,169 @@ public class EquipmentDisplay {
                 new Effect(Material.LIGHT_GRAY_WOOL, asl(tx + 14, ty + 3, tz + 6, 1, 2, 1, hp), hp),
                 new Effect(Material.LIGHT_GRAY_WOOL, asl(tx + 14, ty + 6, tz + 4, 1, 1, 1, hp), hp),
                 new Effect(Material.POLISHED_BLACKSTONE_PRESSURE_PLATE, asl(tx + 15, ty + 3, tz + 12, 1, 1, 2, hp), hp),
+        };
+    }
+
+    static Effect[] dancingLion;
+
+    static {
+        float tx = -8;
+        float ty = -2;
+        float tz = -8;
+        dancingLion = new Effect[]{
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 3, tz  + 4,4, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 3, tz  + 8,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 4, tz  + 5,4, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 4, tz  + 8,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 7, tz  + 5,4, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 7, tz  + 8,3, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 8, tz  + 4,4, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx , ty  + 8, tz  + 9,5, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 2, tz  + 3,14, 1, 9,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 3, tz  + 3,14, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 3, tz  + 6,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 3, tz  + 10,14, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 4, tz  + 3,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 4, tz  + 9,14, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 5, tz  + 4,3, 2, 4,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 5, tz  + 8,2, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 7, tz  + 3,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 7, tz  + 9,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 8, tz  + 3,3, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 8, tz  + 6,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 1, ty  + 9, tz  + 4,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 1, tz  + 2,4, 1, 4,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 1, tz  + 10,4, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 2, tz  + 1,5, 2, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 2, tz  + 12,12, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 3, tz  + 11,12, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 4, tz  + 2,12, 4, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 4, tz  + 10,12, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 5, tz  + 3,2, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 5, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 2, ty  + 6, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 8, tz  + 10,3, 3, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 9, tz  + 8,13, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 9, tz  + 11,12, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 10, tz  + 3,5, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 2, ty  + 10, tz  + 8,12, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty , tz  + 3,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 1, tz  + 1,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 1, tz  + 6,3, 1, 4,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 1, tz  + 13,10, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 3, tz  + 9,13, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 3, tz  + 12,10, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 4, tz  + 1,10, 4, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 3, ty  + 5, tz  + 10,1, 3, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 3, ty  + 7, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 8, tz  + 2,10, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 3, ty  + 9, tz  + 6,1, 2, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty , tz  + 2,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty , tz  + 4,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty , tz  + 11,2, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 2, tz  + 14,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 3, tz ,8, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 3, tz  + 13,8, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 4, tz  + 11,1, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 5, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 4, ty  + 6, tz  + 11,1, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 8, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 9, tz  + 12,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 10, tz  + 2,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 10, tz  + 6,9, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 10, tz  + 11,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 11, tz  + 3,1, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 11, tz  + 8,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 4, ty  + 11, tz  + 10,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty , tz  + 13,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 1, tz  + 14,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 2, tz ,2, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 5, ty  + 4, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 5, tz ,6, 2, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 5, ty  + 5, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 5, ty  + 6, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 7, tz  + 12,6, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 8, tz  + 1,6, 2, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 5, ty  + 8, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 8, tz  + 13,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 9, tz  + 10,9, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 5, ty  + 11, tz  + 4,2, 1, 4,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty , tz  + 12,1, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 1, tz  + 3,8, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 3, tz  + 14,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 4, tz  + 12,4, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 6, ty  + 5, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 6, tz  + 12,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 7, tz ,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 8, tz  + 11,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 9, tz  + 13,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 6, ty  + 10, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 1, tz  + 12,7, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 2, tz  + 2,7, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 3, tz  + 1,7, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 4, tz  + 13,2, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 5, tz  + 12,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 6, tz  + 13,2, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 9, tz  + 3,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 7, ty  + 10, tz  + 4,7, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty , tz  + 12,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty , tz  + 13,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 2, tz ,2, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 2, tz  + 14,3, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 9, ty  + 5, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 8, tz  + 13,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 9, tz  + 12,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 9, tz  + 13,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 10, tz  + 3,5, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 10, tz  + 11,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 10, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 11, tz  + 4,3, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 9, ty  + 11, tz  + 6,2, 1, 4,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty , tz  + 3,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty , tz  + 4,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty , tz  + 11,2, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 1, tz  + 2,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 1, tz  + 5,4, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 1, tz  + 6,3, 1, 5,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 1, tz  + 14,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 10, ty  + 4, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 10, ty  + 5, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 10, ty  + 6, tz  + 12,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 10, ty  + 8, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 10, tz  + 2,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 10, ty  + 11, tz  + 10,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty , tz  + 2,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 1, tz  + 1,2, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 4, tz  + 11,1, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 5, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 11, ty  + 6, tz  + 10,2, 2, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 11, ty  + 6, tz  + 11,1, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 8, tz  + 9,5, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 8, tz  + 10,3, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 8, tz  + 11,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 11, tz  + 3,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 11, ty  + 11, tz  + 8,1, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 1, tz  + 11,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 3, tz  + 4,4, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 3, tz  + 6,3, 6, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 4, tz  + 3,3, 1, 3,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 5, tz  + 3,2, 5, 3,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 12, ty  + 5, tz  + 10,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 12, ty  + 7, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 12, ty  + 9, tz  + 6,2, 1, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 1, tz  + 10,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 2, tz  + 1,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 3, tz  + 8,3, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 5, tz  + 8,2, 4, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 5, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.GILDED_BLACKSTONE,asl(tx  + 13, ty  + 6, tz  + 9,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 13, ty  + 7, tz  + 9,2, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 14, ty  + 5, tz  + 4,1, 5, 2,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 14, ty  + 7, tz  + 3,1, 3, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 15, ty  + 4, tz  + 5,1, 1, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 15, ty  + 7, tz  + 5,1, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 15, ty  + 7, tz  + 8,1, 2, 1,hp),hp),
+                new Effect(Material.SMOOTH_QUARTZ,asl(tx  + 15, ty  + 8, tz  + 4,1, 1, 1,hp),hp),
         };
     }
 

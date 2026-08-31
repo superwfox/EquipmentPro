@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
@@ -36,14 +37,17 @@ public class MenuListener implements Listener {
 
             switch (item.getType()) {
                 case GOLDEN_HELMET -> {
-                    if (PlayerHats.containsKey(qq))
-                        PlayerHats.get(qq).forEach(bd -> pl.showEntity(get(), bd));
+                    if (PlayerHats.containsKey(qq)) PlayerHats.get(qq).forEach(bd -> pl.showEntity(get(), bd));
                     else title(pl, "[§e未购买§f]", "§7请先购买头饰");
                 }
                 case NETHERITE_HELMET -> initPurchaseMenu(pl);
                 case IRON_HELMET -> {
-                    if (PlayerHats.containsKey(qq))
-                        PlayerHats.get(qq).forEach(bd -> pl.hideEntity(get(), bd));
+                    if (PlayerHats.containsKey(qq)) {
+                        PlayerHats.get(qq).forEach(BlockDisplay::remove);
+                        PlayerHats.remove(qq);
+                        getData(qq).equipped = null;
+                        title(pl, "[§e已卸下§f]", "§7头饰已卸下");
+                    }
                     else title(pl, "[§e未购买§f]", "§7请先购买头饰");
                 }
             }
@@ -62,20 +66,20 @@ public class MenuListener implements Listener {
             boolean owned = hasHat(qq, hatId);
 
             if (previewingHat.containsKey(qq) && previewingHat.get(qq).equals(hatId)) {
+                clearPreviewDisplays(qq);
                 if (owned) {
-                    equipHat(qq, hatId);
+                    equipHat(qq, hatId, pl);
                     pl.closeInventory();
                     title(pl, "§e已装备", hatName);
                 } else {
                     addHat(qq, hatId);
-                    equipHat(qq, hatId);
+                    equipHat(qq, hatId, pl);
                     pl.closeInventory();
                     title(pl, "§e购买成功", hatName);
+                    clearPreview(qq, hatId);
                 }
-                clearPreview(qq);
                 previewingHat.remove(qq);
             } else {
-                clearPreview(qq);
                 pl.closeInventory();
                 previewingHat.put(qq, hatId);
 
@@ -83,17 +87,34 @@ public class MenuListener implements Listener {
                     List<BlockDisplay> bds = spawnPreview(pl, hatId);
                     previewDisplays.put(qq, bds);
 
-                    Bukkit.getScheduler().runTaskLater(get(), () -> {
-                        if (previewingHat.containsKey(qq) && previewingHat.get(qq).equals(hatId)) {
-                            clearPreview(qq);
-                            previewingHat.remove(qq);
-                        }
-                    }, 600L);
+                    title(pl, "[§e预览头饰§f]", "§7低头即可" + (owned ? "装备" : "购买") + " | 抬头取消");
+                    new BukkitRunnable() {
+                        int timer = 0;
 
-                    title(pl, "§e预览中", "§7点击完成" + (owned ? "装备" : "购买"));
-                    Bukkit.getScheduler().runTaskLater(get(), () -> {
-                        initPurchaseMenuWithConfirm(pl, hatId, owned);
-                    }, 20L);
+                        @Override
+                        public void run() {
+                            float pitch = pl.getPitch();
+                            timer++;
+                            if (pitch == 90) {
+                                initPurchaseMenuWithConfirm(pl, hatId, owned);
+                                cancel();
+                                return;
+                            }
+
+                            if (pitch == -90 || timer >= 200) {
+                                stop();
+                                return;
+                            }
+                            pl.sendActionBar("§e》预览中《 §7[低头即可" + (owned ? "装备" : "购买") + " | 抬头取消]");
+                        }
+
+                        public void stop() {
+                            pl.sendActionBar("§e");
+                            clearPreview(qq, hatId);
+                            this.cancel();
+                        }
+
+                    }.runTaskTimer(get(), 0, 10);
                 } catch (Exception ex) {
                     title(pl, "§c错误", "§7无法预览");
                 }
@@ -101,12 +122,20 @@ public class MenuListener implements Listener {
         }
     }
 
-    private void clearPreview(String qq) {
+    public void clearPreview(String qq, String hatId) {
+        if (previewingHat.containsKey(qq) && previewingHat.get(qq).equals(hatId)) {
+            previewingHat.remove(qq);
+            clearPreviewDisplays(qq);
+        }
+    }
+
+    private void clearPreviewDisplays(String qq) {
         if (previewDisplays.containsKey(qq)) {
             previewDisplays.get(qq).forEach(BlockDisplay::remove);
             previewDisplays.remove(qq);
         }
     }
+
 
     public static void initPurchaseMenuWithConfirm(Player pl, String confirmHat, boolean owned) {
         var inv = Bukkit.createInventory(null, 54, " 选择头饰 | §lEquipmentPro");

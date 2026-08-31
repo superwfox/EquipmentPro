@@ -24,8 +24,8 @@ public class EffectUtils {
                 bl.setTransformation(effect.getTransformation());
             } else {
                 var t = effect.getTransformation();
-                var trans = t.getTranslation().mul(scaleMult);
-                var scale = t.getScale().mul(scaleMult);
+                var trans = new org.joml.Vector3f(t.getTranslation()).mul(scaleMult);
+                var scale = new org.joml.Vector3f(t.getScale()).mul(scaleMult);
                 bl.setTransformation(new org.bukkit.util.Transformation(trans, t.getLeftRotation(), scale, t.getRightRotation()));
             }
             bl.setTeleportDuration(1);
@@ -38,11 +38,7 @@ public class EffectUtils {
         return spawned;
     }
 
-    public static List<BlockDisplay> spawn(Location loc, Effect[] e, Player owner) {
-        return spawn(loc, e, owner, 1f);
-    }
-
-    public static List<BlockDisplay> spawnPreview(Player pl, String hatId) throws Exception {
+    public static List<BlockDisplay> spawnPreview(Player pl, String hatId) {
         Effect[] effect = getEffect(hatId);
         Location loc = pl.getLocation().add(pl.getLocation().getDirection().multiply(0.6));
         loc.setY(pl.getEyeLocation().getY() - 4 * effect[0].getScale());
@@ -50,14 +46,14 @@ public class EffectUtils {
         return spawn(loc, effect, null, 2f);
     }
 
-    public static void loadEffectsForPlayer(Player pl) throws NoSuchFieldException, IllegalAccessException {
+    public static void loadEffectsForPlayer(Player pl) {
         String qq = getQQ(pl);
         if (qq == null) return;
         String equipped = getEquipped(qq);
         if (equipped == null) return;
 
-        Effect[] effect = getEffect(equipped);
-        List<BlockDisplay> bds = spawn(pl.getEyeLocation().subtract(0, 2 * effect[0].getScale(), 0).clone(), effect, pl);
+        Effect[] effects = getEffect(equipped);
+        List<BlockDisplay> bds = spawn(pl.getEyeLocation().clone().subtract(0, 0.25, 0), effects, pl, 1f);
         PlayerHats.put(qq, bds);
     }
 

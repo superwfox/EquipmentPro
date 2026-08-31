@@ -14,6 +14,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static org.bukkit.Bukkit.getLogger;
+import static sudark2.Sudark.equipmentPro.Utils.EffectUtils.loadEffectsForPlayer;
+import static sudark2.Sudark.equipmentPro.Utils.EffectUtils.unloadEffectsForPlayer;
 
 public class FileManager {
 
@@ -68,8 +70,10 @@ public class FileManager {
         save();
     }
 
-    public static void equipHat(String qq, String hatName) {
+    public static void equipHat(String qq, String hatName,Player pl) {
         getData(qq).equipped = hatName;
+        unloadEffectsForPlayer(pl);
+        loadEffectsForPlayer(pl);
         save();
     }
 

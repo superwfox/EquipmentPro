@@ -17,22 +17,23 @@ import static sudark2.Sudark.equipmentPro.Utils.ItemNameUtil.name;
 public class Menu {
 
     public static final String[][] HATS = {
-            {"obsidian", "龙角", "OBSIDIAN", "0"},
-            {"wild", "鹿角", "BROWN_TERRACOTTA", "0"},
-            {"wildG", "金鹿角", "YELLOW_CONCRETE_POWDER", "0"},
-            {"wildO", "黑鹿角", "OBSIDIAN", "0"},
-            {"tinyAntler", "小鹿角", "GILDED_BLACKSTONE", "0"},
-            {"warden", "监守者", "CYAN_TERRACOTTA", "0"},
-            {"angel", "天使", "GLOWSTONE", "0"},
-            {"god", "上帝", "OCHRE_FROGLIGHT", "0"},
-            {"catBlack", "猫耳", "GOLD_BLOCK", "0"},
-            {"crown", "皇冠", "GOLD_BLOCK", "0"},
-            {"hugeCrown", "大皇冠", "GOLD_BLOCK", "0"},
-            {"hugeCrown2", "华丽皇冠", "HONEY_BLOCK", "0"},
-            {"Dragon", "邱邱王", "BLACK_TERRACOTTA", "0"},
-            {"Tiger", "虎", "SMOOTH_QUARTZ", "0"},
-            {"cyanLoong", "青龙", "DARK_PRISMARINE", "0"},
-            {"darkLoong", "暗龙", "DRAGON_HEAD", "0"},
+            {"obsidian", "龙角", "OBSIDIAN", "90"},
+            {"wild", "鹿角", "BROWN_TERRACOTTA", "90"},
+            {"wildG", "金鹿角", "YELLOW_CONCRETE_POWDER", "90"},
+            {"wildO", "黑鹿角", "OBSIDIAN", "90"},
+            {"tinyAntler", "小鹿角", "GILDED_BLACKSTONE", "90"},
+            {"warden", "监守者", "CYAN_TERRACOTTA", "90"},
+            {"angel", "天使", "GLOWSTONE", "90"},
+            {"god", "上帝", "OCHRE_FROGLIGHT", "90"},
+            {"catBlack", "猫耳", "GOLD_BLOCK", "90"},
+            {"crown", "皇冠", "GOLD_BLOCK", "90"},
+            {"hugeCrown", "大皇冠", "GOLD_BLOCK", "90"},
+            {"hugeCrown2", "华丽皇冠", "HONEY_BLOCK", "90"},
+            {"Dragon", "邱邱王", "BLACK_TERRACOTTA", "90"},
+            {"Tiger", "虎", "SMOOTH_QUARTZ", "60"},
+            {"cyanLoong", "青龙", "DARK_PRISMARINE", "90"},
+            {"darkLoong", "暗龙", "DRAGON_HEAD", "90"},
+            {"dancingLion", "舞狮", "RED_TERRACOTTA", "90"}
     };
 
     public static void initMenu(Player pl) {
